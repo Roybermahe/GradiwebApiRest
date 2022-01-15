@@ -1,14 +1,17 @@
+const libOpenExchange = require('../lib/libOpenExchange');
 const libRequest = require('../lib/libRequest');
 const url_base = `https://${process.env.API_KEY}:${process.env.PASSWORD}@${process.env.SHOP}${process.env.ADMIN_PREFIX}`;
 /**
+ * @param {string} rate
  *@param {[*]} data 
  */
-const mapObject = (data) => {
+const mapObject = (data, rate, rateValue) => {
     return data.map(function (item) {
         return {
             id: item.id,
             product_title: item.title,
-            price: item.variants[0].price,
+            price: rate == 'USD' ? +item.variants[0].price : (+item.variants[0].price)*rateValue,
+            rate,
             images: item.images,
             image: item.image,
             status: item.status,
@@ -21,20 +24,24 @@ const mapObject = (data) => {
 
 module.exports = {
     /**
+     * @param {string} rate price rate to convert
      * @returns product list from shopify
      */
-    getProducts: async () => {
+    getProducts: async (rate) => {
         let url = `${url_base}/products.json`;
         let data = await libRequest.get(url);
-        return mapObject(data.products);
+        let rates = await libOpenExchange.getRates();
+        return mapObject(data.products, rate, rates[rate]);
     },
     /**
      * @param {*} id id from product
+     * @param {string} rate price rate to convert
      * @returns return one product by id
      */
-    getProduct: async (id) => {
+    getProduct: async (id, rate) => {
         let url = `${url_base}/products/${id}.json`;
         let data = await libRequest.get(url);
-        return mapObject([data.product])[0];
+        let rates = await libOpenExchange.getRates();
+        return mapObject([data.product], rate,rates[rate])[0];
     }
 }

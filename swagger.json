@@ -1,0 +1,106 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+      "title": "Swagger Shopify API Rest",
+      "contact": {
+        "email": "roybermanjarrez@gmail.com"
+      },
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:3000/api"
+      }
+    ],
+    "tags": [
+      {
+        "name": "product",
+        "description": "shopify API Request"
+      },
+      {
+        "name": "rates",
+        "description": "openexchange API Request"
+      }
+    ],
+    "paths": {
+      "/products/{rate}": {
+        "get": {
+          "summary": "get all products with rate",
+          "tags": [
+            "product"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "rate",
+              "schema": {
+                "type": "string"
+              },
+              "required": true,
+              "description": "EUR, USD, AED, etc"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Ok"
+            },
+            "400": {
+              "description": "Bad request"
+            }
+          }
+        }
+      },
+      "/products/{rate}/{id}": {
+        "get": {
+          "summary": "get one product with rate",
+          "tags": [
+            "product"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "rate",
+              "schema": {
+                "type": "string"
+              },
+              "required": true,
+              "description": "EUR, USD, AED, etc"
+            },
+            {
+              "in": "path",
+              "name": "id",
+              "schema": {
+                "type": "integer"
+              },
+              "required": true,
+              "description": "ejm: 7434969055457"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Ok"
+            },
+            "400": {
+              "description": "Bad request"
+            }
+          }
+        }
+      },
+      "/rates": {
+        "get": {
+          "summary": "get all rates availables for openexchange",
+          "tags": [
+            "rates"
+          ],
+          "responses": {
+            "200": {
+              "description": "Ok"
+            },
+            "400": {
+              "description": "Bad request"
+            }
+          }
+        }
+      }
+    }
+  }

@@ -3,22 +3,20 @@ const libProcessMessages = require('../lib/libProcessMessages');
 const productService = require('../services/productService')
 var router = express.Router();
 
-router.get('/', async function(req, res, next) {
+router.get('/products/:rate', async function(req, res, next) {
   try {
-    res.json(await productService.getProducts());
+    res.json(await productService.getProducts(req.params.rate));
   } catch (error) {
     libProcessMessages.error(res,error.message);
   }
 });
 
-router.get('/:id', async function(req, res, next) {
+router.get('/products/:rate/:id', async function(req, res, next) {
   try {
-    res.json(await productService.getProduct(req.params.id));
+    res.json(await productService.getProduct(req.params.id, req.params.rate));
   } catch (error) {
     libProcessMessages.error(res,error.message);
   }
 });
-
-
 
 module.exports = router;
