@@ -2,8 +2,10 @@ const libOpenExchange = require('../lib/libOpenExchange');
 const libRequest = require('../lib/libRequest');
 const url_base = `https://${process.env.API_KEY}:${process.env.PASSWORD}@${process.env.SHOP}${process.env.ADMIN_PREFIX}`;
 /**
- * @param {string} rate
- *@param {[*]} data 
+ * 
+ * @param {[*]} data 
+ * @param {string} rate rate ejm: USD, EUR, AED
+ * @param {int} rateValue value from rate
  */
 const mapObject = (data, rate, rateValue) => {
     return data.map(function (item) {
