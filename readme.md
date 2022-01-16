@@ -19,11 +19,14 @@ $ npm run start
 
 ## Test API with swagger
 
-default port is 3000
+default port is 3000 in local environment
 
 ```bash
 server in http://localhost:3000/api
 swagger in http://localhost:3000/swagger
+
+swagger heroku https://vast-meadow-27191.herokuapp.com/swagger
+server  https://vast-meadow-27191.herokuapp.com/api
 ```
 
 

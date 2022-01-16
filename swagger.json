@@ -10,6 +10,9 @@
     "servers": [
       {
         "url": "http://localhost:3000/api"
+      },
+      {
+        "url": "https://vast-meadow-27191.herokuapp.com/api"
       }
     ],
     "tags": [
