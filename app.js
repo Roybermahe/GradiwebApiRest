@@ -33,9 +33,9 @@ app.use(function(req, res, next) {
 });
 
 try {
-  app.listen(process.env.PORT | 3000);
-  console.log(`server in http://localhost:${process.env.PORT | 3000}${prefix}`);
-  console.log(`swagger in http://localhost:${process.env.PORT | 3000}/swagger`);
+  app.listen(process.env.PORT || 3000);
+  console.log(`server in http://localhost:${process.env.PORT || 3000}${prefix}`);
+  console.log(`swagger in http://localhost:${process.env.PORT || 3000}/swagger`);
 } catch (error) {
   console.log(error);
 }
